@@ -8,6 +8,10 @@
   },
   "author": "Michael Chen",
   "license": "MIT",
+  "repository" : { 
+    "type" : "git",
+    "url" : "https://github.com/cwchentw/calculator-ts.git"
+  },
   "devDependencies": {
     "@types/chai": "^3.5.1",
     "@types/mocha": "^2.2.41",
