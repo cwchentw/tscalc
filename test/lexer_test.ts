@@ -1,0 +1,147 @@
+import * as token from '../src/token';
+import * as lex from '../src/lexer';
+import { assert } from "chai";
+
+describe("Lexer", () => {
+    describe("Lex single elements", () => {
+        it("Empty string", () => {
+            var lexer = new lex.Lexer("");
+            
+            var t = lexer.next();
+            assert.equal(t.token(), token.TokenType.EOF);
+            assert.equal(t.value(), "EOF");
+        });
+        
+        it("Integer", () => {
+            var lexer = new lex.Lexer("12345");
+            
+            var t = lexer.next();
+            assert.equal(t.token(), token.TokenType.Integer);
+            assert.equal(t.value(), "12345");
+        });
+        
+        it("Float", () => {
+            var lexer = new lex.Lexer("12.345");
+            
+            var t = lexer.next();
+            assert.equal(t.token(), token.TokenType.Float);
+            assert.equal(t.value(), "12.345");
+        });
+        
+        it("Add", () => {
+            var lexer = new lex.Lexer("+");
+            
+            var t = lexer.next();
+            assert.equal(t.token(), token.TokenType.Add);
+            assert.equal(t.value(), "+");            
+        });
+        
+        it("Sub", () => {
+            var lexer = new lex.Lexer("-");
+            
+            var t = lexer.next();
+            assert.equal(t.token(), token.TokenType.Sub);
+            assert.equal(t.value(), "-");            
+        });
+
+        it("Mul", () => {
+            var lexer = new lex.Lexer("*");
+            var t = lexer.next();
+            
+            assert.equal(t.token(), token.TokenType.Mul);
+            assert.equal(t.value(), "*");            
+        });
+        
+        it("Div", () => {
+            var lexer = new lex.Lexer("/");
+            var t = lexer.next();
+            
+            assert.equal(t.token(), token.TokenType.Div);
+            assert.equal(t.value(), "/");            
+        });
+        
+        it("Mod", () => {
+            var lexer = new lex.Lexer("%");
+            var t = lexer.next();
+            
+            assert.equal(t.token(), token.TokenType.Mod);
+            assert.equal(t.value(), "%");            
+        });
+        
+        it("Pow", () => {
+            var lexer = new lex.Lexer("**");
+            var t = lexer.next();
+            
+            assert.equal(t.token(), token.TokenType.Pow);
+            assert.equal(t.value(), "**");            
+        });
+        
+        it("Left Paran", () => {
+            var lexer = new lex.Lexer("(");
+            var t = lexer.next();
+            
+            assert.equal(t.token(), token.TokenType.LeftParen);
+            assert.equal(t.value(), "(");            
+        });
+        
+        it("Right Paran", () => {
+            var lexer = new lex.Lexer(")");
+            var t = lexer.next();
+            
+            assert.equal(t.token(), token.TokenType.RightParen);
+            assert.equal(t.value(), ")");            
+        });
+    });
+    
+    describe("Lex expressions", () => {
+        it("12 + 34", () => {
+            var lexer = new lex.Lexer("12 + 34");
+            
+            var t = lexer.next();
+            assert.equal(t.value(), "12");
+            
+            t = lexer.next();
+            assert.equal(t.value(), "+");
+            
+            t = lexer.next();
+            assert.equal(t.value(), "34");
+        });
+        
+        it("(5 % 3)**(4 - 2)", () => {
+            var lexer = new lex.Lexer("(5 % 3)**(4 - 2)");
+            
+            var t = lexer.next();
+            assert.equal(t.value(), "(");
+            
+            t = lexer.next();
+            assert.equal(t.value(), "5");
+            
+            t = lexer.next();
+            assert.equal(t.value(), "%");
+            
+            t = lexer.next();
+            assert.equal(t.value(), "3");
+            
+            t = lexer.next();
+            assert.equal(t.value(), ")");
+            
+            t = lexer.next();
+            assert.equal(t.value(), "**");
+            
+            t = lexer.next();
+            assert.equal(t.value(), "(");
+            
+            t = lexer.next();
+            assert.equal(t.value(), "4");
+            
+            t = lexer.next();
+            assert.equal(t.value(), "-");
+            
+            t = lexer.next();
+            assert.equal(t.value(), "2");
+            
+            t = lexer.next();
+            assert.equal(t.value(), ")");
+        });
+    });
+});

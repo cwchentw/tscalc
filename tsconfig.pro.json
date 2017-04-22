@@ -1,0 +1,14 @@
+{
+    "files": [
+      "src/token.ts",
+      "src/lexer.ts",
+      "src/ast.ts",
+      "src/parser.ts",
+      "src/interpreter.ts"
+    ],
+    "compilerOptions": {
+        "outFile": "calc.min.js",
+        "target": "es5",
+        "module": "amd"
+    }
+}
