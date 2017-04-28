@@ -1,6 +1,6 @@
 # calculator-ts
 
-A simple calculator implemented as an algebra intepreter.
+An elementary arithmetic intepreter.
 
 ## Usage
 
@@ -29,6 +29,10 @@ Some valid expressions:
 - `3 * 2`
 - `(5 - 2) / (3 + 1)`
 - `(8 % 5)**(4 - 1)`
+
+## Intro
+
+This interperter doesn't use JavaScript ``eval`` function; instead, we wrote it from scratch, i.e. lexer, parser, interpreter. This toy interperter is an interpreter exercise; we may or may not add features later.
 
 ## Install
 
