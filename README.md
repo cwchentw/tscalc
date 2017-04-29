@@ -34,11 +34,15 @@ Some valid expressions:
 
 This interperter doesn't use JavaScript ``eval`` function; instead, we wrote it from scratch, i.e. lexer, parser, interpreter. This toy interperter is an interpreter exercise; we may or may not add features later.
 
+We implemented a simple web calculator based on this project.  You may follow the app [here](https://github.com/cwchentw/calculator-ts-web).
+
 ## Install
 
 Build with Node and TypeScript.
 
 ```
+$ git clone https://github.com/cwchentw/calculator-ts
+$ cd calculator-ts
 $ npm install
 $ gulp
 ```
