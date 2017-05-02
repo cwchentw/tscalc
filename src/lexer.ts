@@ -69,6 +69,8 @@ export class Lexer {
             return this.lexKeyword(1, token.TokenType.Div);
         } else if (s === "%") {
             return this.lexKeyword(1, token.TokenType.Mod);
+        } else if (this.isUpper(s)) {
+            return this.lexWord();
         } else if (this.isDigit(s) || this.isDot(s)) {
             return this.lexNumber();
         } else if (this.isSpace(s)) {
@@ -79,6 +81,33 @@ export class Lexer {
         } else {
             throw new Error("Unknown string: " + s);
         }
+    }
+    
+    private lexWord = () => {
+        let w = this.strArray.slice(this.pos);
+        
+        if (w.length >= 8) {
+            if (w.slice(0, 8).join("") === "Infinity") {
+                this.offset += 8;
+                this.current += 8;
+                this.appendToken(token.TokenType.TInfinity);
+                this.update();
+                return this.updateState;
+            }
+        }
+        
+        if (w.length >= 3) {
+            if (w.slice(0, 3).join("") === "NaN") {
+                this.offset += 3;
+                this.current += 3;
+                this.appendToken(token.TokenType.TNaN);
+                this.update();
+                return this.updateState;
+            }
+        }
+
+        let s = this.peekString();
+        throw new Error("Unknow string: " + s);
     }
 
     private lexNumber = () => {
@@ -159,6 +188,7 @@ export class Lexer {
 
     private lexKeyword = (offset: number, t: token.TokenType) => {
         this.offset += offset;
+        this.current += offset;
 
         this.appendToken(t);
         this.update();
@@ -176,6 +206,15 @@ export class Lexer {
 
     private peekString = () => {
         return this.strArray[this.current];
+    }
+    
+    private isUpper = (s: string) => {
+        return (s === "A" || s === "B" || s === "C" || s === "D" || s === "E" ||
+            s === "F" || s === "G" || s === "H" || s === "I" || s === "J" ||
+            s === "K" || s === "L" || s === "M" || s === "N" || s === "O" ||
+            s === "P" || s === "Q" || s === "R" || s === "S" || s === "T" ||
+            s === "U" || s === "V" || s === "W" || s === "X" || s === "Y" ||
+            s === "Z")
     }
 
     private isDigit = (s: string) => {

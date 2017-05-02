@@ -2,6 +2,8 @@ export enum TokenType {
     EOF,
     Integer,
     Float,
+    TNaN,
+    TInfinity,
     Add, // +
     Sub, // -
     Mul, // *

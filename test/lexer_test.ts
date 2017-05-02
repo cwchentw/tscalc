@@ -28,6 +28,22 @@ describe("Lexer", () => {
             assert.equal(t.value(), "12.345");
         });
         
+        it("NaN", () => {
+            var lexer = new lex.Lexer("NaN");
+            
+            var t = lexer.next();
+            assert.equal(t.token(), token.TokenType.TNaN);
+            assert.equal(t.value(), "NaN");
+        });
+        
+        it("Infinity", () => {
+            var lexer = new lex.Lexer("Infinity");
+            
+            var t = lexer.next();
+            assert.equal(t.token(), token.TokenType.TInfinity);
+            assert.equal(t.value(), "Infinity");
+        });
+        
         it("Add", () => {
             var lexer = new lex.Lexer("+");
             
@@ -105,6 +121,19 @@ describe("Lexer", () => {
             
             t = lexer.next();
             assert.equal(t.value(), "34");
+        });
+        
+        it("NaN + Infinity", () => {
+            var lexer = new lex.Lexer("NaN + Infinity");
+            
+            var t = lexer.next();
+            assert.equal(t.value(), "NaN");
+
+            t = lexer.next();
+            assert.equal(t.value(), "+");
+            
+            t = lexer.next();
+            assert.equal(t.value(), "Infinity");
         });
         
         it("(5 % 3)**(4 - 2)", () => {
