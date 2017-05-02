@@ -137,7 +137,7 @@ export class Parser {
         return value;
     }
 
-    // factor: (Add/Sub) Integer|Float
+    // factor: (Add/Sub) Integer|Float|NaN|Infinity
     private parseFactor = () => {
         const t = this.currentToken;
 
@@ -146,6 +146,12 @@ export class Parser {
             return new ast.FactorAST(t);
         } else if (t.token() === token.TokenType.Float) {
             this.eat(token.TokenType.Float);
+            return new ast.FactorAST(t);
+        } else if (t.token() === token.TokenType.TNaN) {
+            this.eat(token.TokenType.TNaN);
+            return new ast.FactorAST(t);
+        } else if (t.token() === token.TokenType.TInfinity) {
+            this.eat(token.TokenType.TInfinity);
             return new ast.FactorAST(t);
         } else if (t.token() === token.TokenType.Add) {
             this.eat(token.TokenType.Add);

@@ -31,6 +31,20 @@ describe("Parser", () => {
             var ast = parser.next();
             assert.equal(ast.toString(), "12.345");
         });
+        
+        it("NaN", () => {
+            var parser = new parse.Parser(new lex.Lexer("NaN"));
+            
+            var ast = parser.next();
+            assert.equal(ast.toString(), "NaN");
+        });
+        
+        it("Infinity", () => {
+            var parser = new parse.Parser(new lex.Lexer("Infinity"));
+            
+            var ast = parser.next();
+            assert.equal(ast.toString(), "Infinity");
+        });
     });
     
     describe("Parse expressions", () => {
@@ -53,6 +67,13 @@ describe("Parser", () => {
             
             var ast = parser.next();
             assert.equal(ast.toString(), "(+ 3 4)");
+        });
+        
+        it("Infinity - NaN", () => {
+            var parser = new parse.Parser(new lex.Lexer("Infinity - NaN"));
+            
+            var ast = parser.next();
+            assert.equal(ast.toString(), "(- Infinity NaN)");
         });
         
         it("(5 % 3) / (4 - 1)", () => {
