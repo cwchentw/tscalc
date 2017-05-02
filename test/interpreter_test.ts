@@ -28,6 +28,18 @@ describe("Interpreter", () => {
             var result = evaluator.run();
             assert(Math.abs(result - 12.345) < 0.000001);
         });
+        
+        it("NaN", () => {
+            var evaluator = new e.Evaluator("NaN");
+            var result = evaluator.run();
+            assert.equal(isNaN(result), true);
+        });
+
+        it("Infinity", () => {
+            var evaluator = new e.Evaluator("Infinity");
+            var result = evaluator.run();
+            assert.equal(isFinite(result), false);
+        });
     });
     
     describe("Eval expressions", () => {
@@ -35,6 +47,18 @@ describe("Interpreter", () => {
             var evaluator = new e.Evaluator("1 + 2");
             var result = evaluator.run();
             assert.equal(result, 3);
+        });
+        
+        it("3 + Infinity", () => {
+            var evaluator = new e.Evaluator("3 + Infinity");
+            var result = evaluator.run();
+            assert.equal(isFinite(result), false);
+        });
+        
+        it("3 + NaN", () => {
+            var evaluator = new e.Evaluator("3 + NaN");
+            var result = evaluator.run();
+            assert.equal(isNaN(result), true);
         });
         
         it("5 % 3", () => {

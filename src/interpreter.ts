@@ -72,6 +72,10 @@ export class Interpreter {
                 return parseInt(t.value(), 10);
             } else if (t.token() === token.TokenType.Float) {
                 return parseFloat(t.value());
+            } else if (t.token() === token.TokenType.TNaN) {
+                return NaN;
+            } else if (t.token() === token.TokenType.TInfinity) {
+                return Infinity;
             } else {
                 throw new Error("Unable to eval due to unknown factor");
             }
