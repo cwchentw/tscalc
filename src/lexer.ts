@@ -1,14 +1,23 @@
 import * as token from "./token";
 
 export class Lexer {
+    // The start position of a token
     private pos: number;
+    // The current position of the lexer.
     private current: number;
+    // The offset from pos.
     private offset: number;
-    private index: number;
+    
+    // The input string becomes an array of string. 
     private strArray: string[];
+    
+    // The token array.
     private tokens: token.Token[];
+    // The index of tokens.
+    private index: number;
 
     public constructor(input: string) {
+        // Initialize some values.
         this.pos = 0;
         this.current = 0;
         this.offset = 0;
@@ -16,9 +25,11 @@ export class Lexer {
         this.strArray = input.split("");
         this.tokens = [];
 
+        // Run a finite automata.
         this.run();
     }
 
+    // Get next token.
     public next = () => {
         this.index += 1;
         if (this.index >= this.tokens.length) {
@@ -27,6 +38,7 @@ export class Lexer {
         return this.tokens[this.index];
     }
 
+    // Peek next token without advancing steps.
     public peek = () => {
         if (this.index + 1 >= this.tokens.length) {
             return null;
