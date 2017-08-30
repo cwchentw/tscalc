@@ -1,4 +1,4 @@
-export enum TokenType {
+export enum Type {
     EOF,
     Integer,
     Float,
@@ -15,9 +15,9 @@ export enum TokenType {
 }
 
 export class Token {
-    private t: TokenType;
+    private t: Type;
     private str: string;
-    constructor(t: TokenType, s: string) {
+    constructor(t: Type, s: string) {
         this.t = t;
         this.str = s;
     }

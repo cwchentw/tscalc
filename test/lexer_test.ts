@@ -8,7 +8,7 @@ describe("Lexer", () => {
             var lexer = new lex.Lexer("");
             
             var t = lexer.next();
-            assert.equal(t.token(), token.TokenType.EOF);
+            assert.equal(t.token(), token.Type.EOF);
             assert.equal(t.value(), "EOF");
         });
         
@@ -16,7 +16,7 @@ describe("Lexer", () => {
             var lexer = new lex.Lexer("12345");
             
             var t = lexer.next();
-            assert.equal(t.token(), token.TokenType.Integer);
+            assert.equal(t.token(), token.Type.Integer);
             assert.equal(t.value(), "12345");
         });
         
@@ -24,7 +24,7 @@ describe("Lexer", () => {
             var lexer = new lex.Lexer("12.345");
             
             var t = lexer.next();
-            assert.equal(t.token(), token.TokenType.Float);
+            assert.equal(t.token(), token.Type.Float);
             assert.equal(t.value(), "12.345");
         });
         
@@ -32,7 +32,7 @@ describe("Lexer", () => {
             var lexer = new lex.Lexer("NaN");
             
             var t = lexer.next();
-            assert.equal(t.token(), token.TokenType.TNaN);
+            assert.equal(t.token(), token.Type.TNaN);
             assert.equal(t.value(), "NaN");
         });
         
@@ -40,7 +40,7 @@ describe("Lexer", () => {
             var lexer = new lex.Lexer("Infinity");
             
             var t = lexer.next();
-            assert.equal(t.token(), token.TokenType.TInfinity);
+            assert.equal(t.token(), token.Type.TInfinity);
             assert.equal(t.value(), "Infinity");
         });
         
@@ -48,7 +48,7 @@ describe("Lexer", () => {
             var lexer = new lex.Lexer("+");
             
             var t = lexer.next();
-            assert.equal(t.token(), token.TokenType.Add);
+            assert.equal(t.token(), token.Type.Add);
             assert.equal(t.value(), "+");            
         });
         
@@ -56,7 +56,7 @@ describe("Lexer", () => {
             var lexer = new lex.Lexer("-");
             
             var t = lexer.next();
-            assert.equal(t.token(), token.TokenType.Sub);
+            assert.equal(t.token(), token.Type.Sub);
             assert.equal(t.value(), "-");            
         });
 
@@ -64,7 +64,7 @@ describe("Lexer", () => {
             var lexer = new lex.Lexer("*");
             var t = lexer.next();
             
-            assert.equal(t.token(), token.TokenType.Mul);
+            assert.equal(t.token(), token.Type.Mul);
             assert.equal(t.value(), "*");            
         });
         
@@ -72,7 +72,7 @@ describe("Lexer", () => {
             var lexer = new lex.Lexer("/");
             var t = lexer.next();
             
-            assert.equal(t.token(), token.TokenType.Div);
+            assert.equal(t.token(), token.Type.Div);
             assert.equal(t.value(), "/");            
         });
         
@@ -80,7 +80,7 @@ describe("Lexer", () => {
             var lexer = new lex.Lexer("%");
             var t = lexer.next();
             
-            assert.equal(t.token(), token.TokenType.Mod);
+            assert.equal(t.token(), token.Type.Mod);
             assert.equal(t.value(), "%");            
         });
         
@@ -88,7 +88,7 @@ describe("Lexer", () => {
             var lexer = new lex.Lexer("**");
             var t = lexer.next();
             
-            assert.equal(t.token(), token.TokenType.Pow);
+            assert.equal(t.token(), token.Type.Pow);
             assert.equal(t.value(), "**");            
         });
         
@@ -96,7 +96,7 @@ describe("Lexer", () => {
             var lexer = new lex.Lexer("(");
             var t = lexer.next();
             
-            assert.equal(t.token(), token.TokenType.LeftParen);
+            assert.equal(t.token(), token.Type.LeftParen);
             assert.equal(t.value(), "(");            
         });
         
@@ -104,7 +104,7 @@ describe("Lexer", () => {
             var lexer = new lex.Lexer(")");
             var t = lexer.next();
             
-            assert.equal(t.token(), token.TokenType.RightParen);
+            assert.equal(t.token(), token.Type.RightParen);
             assert.equal(t.value(), ")");            
         });
     });

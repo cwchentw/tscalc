@@ -39,17 +39,17 @@ export class Interpreter {
             const left = this.eval(a.getLeftChild());
             const right = this.eval(a.getRightChild());
 
-            if (t.token() === token.TokenType.Add) {
+            if (t.token() === token.Type.Add) {
                 return left + right;
-            } else if (t.token() === token.TokenType.Sub) {
+            } else if (t.token() === token.Type.Sub) {
                 return left - right;
-            } else if (t.token() === token.TokenType.Mul) {
+            } else if (t.token() === token.Type.Mul) {
                 return left * right;
-            } else if (t.token() === token.TokenType.Div) {
+            } else if (t.token() === token.Type.Div) {
                 return left / right;
-            } else if (t.token() === token.TokenType.Mod) {
+            } else if (t.token() === token.Type.Mod) {
                 return left % right;
-            } else if (t.token() === token.TokenType.Pow) {
+            } else if (t.token() === token.Type.Pow) {
                 return Math.pow(left, right);
             } else {
                 throw new Error("Unable to eval due to unknown bi-op");
@@ -58,9 +58,9 @@ export class Interpreter {
             const t = a.token();
             const factor = this.eval(a.getChild());
 
-            if (t.token() === token.TokenType.Add) {
+            if (t.token() === token.Type.Add) {
                 return factor;
-            } else if (t.token() === token.TokenType.Sub) {
+            } else if (t.token() === token.Type.Sub) {
                 return -factor;
             } else {
                 throw new Error("Unable to eval due to unknown uni-op");
@@ -68,13 +68,13 @@ export class Interpreter {
         } else if (a instanceof ast.FactorAST) {
             const t = a.token();
 
-            if (t.token() === token.TokenType.Integer) {
+            if (t.token() === token.Type.Integer) {
                 return parseInt(t.value(), 10);
-            } else if (t.token() === token.TokenType.Float) {
+            } else if (t.token() === token.Type.Float) {
                 return parseFloat(t.value());
-            } else if (t.token() === token.TokenType.TNaN) {
+            } else if (t.token() === token.Type.TNaN) {
                 return NaN;
-            } else if (t.token() === token.TokenType.TInfinity) {
+            } else if (t.token() === token.Type.TInfinity) {
                 return Infinity;
             } else {
                 throw new Error("Unable to eval due to unknown factor");

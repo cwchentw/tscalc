@@ -35,8 +35,8 @@ export class Parser {
 
             this.stmt.push(expr);
 
-            if (this.currentToken.token() === token.TokenType.EOF) {
-                this.eat(token.TokenType.EOF);
+            if (this.currentToken.token() === token.Type.EOF) {
+                this.eat(token.Type.EOF);
             }
         }
     }
@@ -49,16 +49,16 @@ export class Parser {
             return null;
         }
 
-        while (this.currentToken.token() === token.TokenType.Add ||
-            this.currentToken.token() === token.TokenType.Sub) {
+        while (this.currentToken.token() === token.Type.Add ||
+            this.currentToken.token() === token.Type.Sub) {
             const t = this.currentToken;
 
-            if (t.token() === token.TokenType.Add) {
-                this.eat(token.TokenType.Add);
+            if (t.token() === token.Type.Add) {
+                this.eat(token.Type.Add);
             }
 
-            if (t.token() === token.TokenType.Sub) {
-                this.eat(token.TokenType.Sub);
+            if (t.token() === token.Type.Sub) {
+                this.eat(token.Type.Sub);
             }
 
             const other = this.parseTerm();
@@ -81,21 +81,21 @@ export class Parser {
             return null;
         }
 
-        while (this.currentToken.token() === token.TokenType.Mul ||
-            this.currentToken.token() === token.TokenType.Div ||
-            this.currentToken.token() === token.TokenType.Mod) {
+        while (this.currentToken.token() === token.Type.Mul ||
+            this.currentToken.token() === token.Type.Div ||
+            this.currentToken.token() === token.Type.Mod) {
             const t = this.currentToken;
 
-            if (t.token() === token.TokenType.Mul) {
-                this.eat(token.TokenType.Mul);
+            if (t.token() === token.Type.Mul) {
+                this.eat(token.Type.Mul);
             }
 
-            if (t.token() === token.TokenType.Div) {
-                this.eat(token.TokenType.Div);
+            if (t.token() === token.Type.Div) {
+                this.eat(token.Type.Div);
             }
 
-            if (t.token() === token.TokenType.Mod) {
-                this.eat(token.TokenType.Mod);
+            if (t.token() === token.Type.Mod) {
+                this.eat(token.Type.Mod);
             }
 
             const other = this.parseValue();
@@ -118,11 +118,11 @@ export class Parser {
             return null;
         }
 
-        while (this.currentToken.token() === token.TokenType.Pow) {
+        while (this.currentToken.token() === token.Type.Pow) {
             const t = this.currentToken;
 
-            if (t.token() === token.TokenType.Pow) {
-                this.eat(token.TokenType.Pow);
+            if (t.token() === token.Type.Pow) {
+                this.eat(token.Type.Pow);
             }
 
             const other = this.parseFactor();
@@ -141,31 +141,31 @@ export class Parser {
     private parseFactor = () => {
         const t = this.currentToken;
 
-        if (t.token() === token.TokenType.Integer) {
-            this.eat(token.TokenType.Integer);
+        if (t.token() === token.Type.Integer) {
+            this.eat(token.Type.Integer);
             return new ast.FactorAST(t);
-        } else if (t.token() === token.TokenType.Float) {
-            this.eat(token.TokenType.Float);
+        } else if (t.token() === token.Type.Float) {
+            this.eat(token.Type.Float);
             return new ast.FactorAST(t);
-        } else if (t.token() === token.TokenType.TNaN) {
-            this.eat(token.TokenType.TNaN);
+        } else if (t.token() === token.Type.TNaN) {
+            this.eat(token.Type.TNaN);
             return new ast.FactorAST(t);
-        } else if (t.token() === token.TokenType.TInfinity) {
-            this.eat(token.TokenType.TInfinity);
+        } else if (t.token() === token.Type.TInfinity) {
+            this.eat(token.Type.TInfinity);
             return new ast.FactorAST(t);
-        } else if (t.token() === token.TokenType.Add) {
-            this.eat(token.TokenType.Add);
+        } else if (t.token() === token.Type.Add) {
+            this.eat(token.Type.Add);
             return new ast.UniOpAST(t, this.parseFactor());
-        } else if (t.token() === token.TokenType.Sub) {
-            this.eat(token.TokenType.Sub);
+        } else if (t.token() === token.Type.Sub) {
+            this.eat(token.Type.Sub);
             return new ast.UniOpAST(t, this.parseFactor());
-        } else if (t.token() === token.TokenType.LeftParen) {
-            this.eat(token.TokenType.LeftParen);
+        } else if (t.token() === token.Type.LeftParen) {
+            this.eat(token.Type.LeftParen);
             const expr = this.parseExpr();
-            this.eat(token.TokenType.RightParen);
+            this.eat(token.Type.RightParen);
             return expr;
-        } else if (t.token() === token.TokenType.EOF) {
-            this.eat(token.TokenType.EOF);
+        } else if (t.token() === token.Type.EOF) {
+            this.eat(token.Type.EOF);
             return null;
         } else if (t === null) {
             return null;
@@ -174,7 +174,7 @@ export class Parser {
         }
     }
 
-    private eat = (t: token.TokenType) => {
+    private eat = (t: token.Type) => {
         if (t !== this.currentToken.token()) {
             throw new Error("Wrong token: -->" + this.currentToken.value() + "<--");
         }

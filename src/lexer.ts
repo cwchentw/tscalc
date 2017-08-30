@@ -47,7 +47,7 @@ export class Lexer {
     private updateState = () => {
         if (this.current >= this.strArray.length) {
             this.tokens.push(
-                new token.Token(token.TokenType.EOF, "EOF"));
+                new token.Token(token.Type.EOF, "EOF"));
 
             // Change state to over.
             return null;
@@ -56,19 +56,19 @@ export class Lexer {
         const s = this.peekString();
 
         if (s === "(") {
-            return this.lexKeyword(1, token.TokenType.LeftParen);
+            return this.lexKeyword(1, token.Type.LeftParen);
         } else if (s === ")") {
-            return this.lexKeyword(1, token.TokenType.RightParen);
+            return this.lexKeyword(1, token.Type.RightParen);
         } else if (s === "+") {
-            return this.lexKeyword(1, token.TokenType.Add);
+            return this.lexKeyword(1, token.Type.Add);
         } else if (s === "-") {
-            return this.lexKeyword(1, token.TokenType.Sub);
+            return this.lexKeyword(1, token.Type.Sub);
         } else if (s === "*") {
             return this.lexTimes();
         } else if (s === "/") {
-            return this.lexKeyword(1, token.TokenType.Div);
+            return this.lexKeyword(1, token.Type.Div);
         } else if (s === "%") {
-            return this.lexKeyword(1, token.TokenType.Mod);
+            return this.lexKeyword(1, token.Type.Mod);
         } else if (this.isUpper(s)) {
             return this.lexWord();
         } else if (this.isDigit(s) || this.isDot(s)) {
@@ -90,7 +90,7 @@ export class Lexer {
             if (w.slice(0, 8).join("") === "Infinity") {
                 this.offset += 8;
                 this.current += 8;
-                this.appendToken(token.TokenType.TInfinity);
+                this.appendToken(token.Type.TInfinity);
                 this.update();
                 return this.updateState;
             }
@@ -100,7 +100,7 @@ export class Lexer {
             if (w.slice(0, 3).join("") === "NaN") {
                 this.offset += 3;
                 this.current += 3;
-                this.appendToken(token.TokenType.TNaN);
+                this.appendToken(token.Type.TNaN);
                 this.update();
                 return this.updateState;
             }
@@ -136,7 +136,7 @@ export class Lexer {
             s = this.peekString();
         }
 
-        this.appendToken(token.TokenType.Integer);
+        this.appendToken(token.Type.Integer);
         this.update();
 
         return this.updateState;
@@ -169,7 +169,7 @@ export class Lexer {
             s = this.peekString();
         }
 
-        this.appendToken(token.TokenType.Float);
+        this.appendToken(token.Type.Float);
         this.update();
 
         return this.updateState;
@@ -179,14 +179,14 @@ export class Lexer {
         if (this.pos + 2 <= this.strArray.length) {
             this.current += 1;
             if (this.peekString() === "*") {
-                return this.lexKeyword(2, token.TokenType.Pow);
+                return this.lexKeyword(2, token.Type.Pow);
             }
         }
 
-        return this.lexKeyword(1, token.TokenType.Mul);
+        return this.lexKeyword(1, token.Type.Mul);
     }
 
-    private lexKeyword = (offset: number, t: token.TokenType) => {
+    private lexKeyword = (offset: number, t: token.Type) => {
         this.offset += offset;
         this.current += offset;
 
@@ -196,7 +196,7 @@ export class Lexer {
         return this.updateState;
     }
 
-    private appendToken = (t: token.TokenType) => {
+    private appendToken = (t: token.Type) => {
         const s = this.strArray.slice(this.pos, this.pos + this.offset).join("");
 
         this.tokens.push(
