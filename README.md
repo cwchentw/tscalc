@@ -4,18 +4,20 @@ An elementary arithmetic intepreter.
 
 ## Usage
 
-Run this calculator with RequireJS.
+Run this calculator in a browser:
 
 ```
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.3/require.min.js"></script>
-<script src="/js/calc.min.js"></script>
-<script>
-    define("main", ["interpreter"], function (e) {
-        var evaluator = new e.Evaluator("3 + 2");
-        console.log(evaluator.run());
-    });
-    require(["main"]);
-</script>
+<!DOCTYPE html>
+<head>
+
+</head>
+<body>
+  <script src="/dist/calc.min.js"></script>
+  <script>
+    var evaluator = new calc.Evaluator("3 + 2");
+    console.log(evaluator.run());
+  </script>
+</body>
 ```
 
 Currently, this calculator only supports

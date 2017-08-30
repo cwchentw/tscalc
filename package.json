@@ -4,34 +4,26 @@
   "description": "A simple calculator",
   "main": "./dist/calc.min.js",
   "scripts": {
-    "test": "mocha --compilers ts:ts-node/register test/*.ts"
+    "test": "mocha --compilers ts:ts-node/register test/*.ts",
+    "start": "webpack --config webpack.config.js"
   },
   "author": "Michael Chen",
   "license": "MIT",
-  "repository" : { 
-    "type" : "git",
-    "url" : "https://github.com/cwchentw/calculator-ts.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cwchentw/calculator-ts.git"
   },
   "devDependencies": {
     "@types/chai": "^3.5.1",
     "@types/mocha": "^2.2.41",
-    "browserify": "^14.3.0",
+    "awesome-typescript-loader": "^3.2.3",
     "chai": "^3.5.0",
-    "gulp": "^3.9.1",
-    "gulp-mocha": "^4.3.0",
-    "gulp-run": "^1.7.1",
-    "gulp-tslint": "^8.0.0",
-    "gulp-typescript": "^3.1.6",
-    "gulp-uglify": "^2.1.2",
-    "gulp-util": "^3.0.8",
     "mocha": "^3.2.0",
+    "ts-loader": "^2.3.4",
     "ts-node": "^3.0.2",
     "tsify": "^3.0.1",
     "tslint": "^5.1.0",
     "typescript": "^2.2.2",
-    "typings": "^2.1.1",
-    "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0",
-    "watchify": "^3.9.0"
+    "webpack": "^3.5.5"
   }
 }

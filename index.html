@@ -3,13 +3,9 @@
 
 </head>
 <body>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.3/require.min.js"></script>
   <script src="/dist/calc.min.js"></script>
   <script>
-    define("main", ["interpreter"], function (e) {
-        var evaluator = new e.Evaluator("3 + 2");
-        console.log(evaluator.run());
-    });
-    require(["main"]);
+    var evaluator = new calc.Evaluator("3 + 2");
+    console.log(evaluator.run());
   </script>
 </body>
