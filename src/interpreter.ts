@@ -1,6 +1,6 @@
 import * as ast from "./ast";
-import * as lex from "./lexer";
-import * as parse from "./parser";
+import * as lexer from "./lexer";
+import * as parser from "./parser";
 import * as token from "./token";
 
 export class Evaluator {
@@ -8,7 +8,7 @@ export class Evaluator {
 
     constructor(s: string) {
         this.interpreter =
-            new Interpreter(new parse.Parser(new lex.Lexer(s)));
+            new Interpreter(new parser.Parser(new lexer.Lexer(s)));
     }
 
     public run = () => {
@@ -17,9 +17,9 @@ export class Evaluator {
 }
 
 export class Interpreter {
-    private parser: parse.Parser;
+    private parser: parser.Parser;
 
-    constructor(p: parse.Parser) {
+    constructor(p: parser.Parser) {
         this.parser = p;
     }
 

@@ -1,14 +1,14 @@
 import * as ast from "./ast";
-import * as lex from "./lexer";
+import * as lexer from "./lexer";
 import * as token from "./token";
 
 export class Parser {
-    private lexer: lex.Lexer;
+    private lexer: lexer.Lexer;
     private currentToken: token.Token;
     private stmt: ast.AST[];
     private index: number;
 
-    public constructor(lexer: lex.Lexer) {
+    public constructor(lexer: lexer.Lexer) {
         this.lexer = lexer;
         this.stmt = [];
         this.index = -1;
