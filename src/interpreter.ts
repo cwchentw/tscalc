@@ -52,7 +52,7 @@ export class Interpreter {
             } else if (t.token() === token.Type.Pow) {
                 return Math.pow(left, right);
             } else {
-                throw new Error("Unable to eval due to unknown bi-op");
+                throw new Error("Unable to eval unknown bi-op AST");
             }
         } else if (a instanceof ast.UniOpAST) {
             const t = a.token();
@@ -63,7 +63,7 @@ export class Interpreter {
             } else if (t.token() === token.Type.Sub) {
                 return -factor;
             } else {
-                throw new Error("Unable to eval due to unknown uni-op");
+                throw new Error("Unable to eval unknown uni-op AST");
             }
         } else if (a instanceof ast.FactorAST) {
             const t = a.token();
@@ -77,10 +77,10 @@ export class Interpreter {
             } else if (t.token() === token.Type.TInfinity) {
                 return Infinity;
             } else {
-                throw new Error("Unable to eval due to unknown factor");
+                throw new Error("Unable to eval unknown factor");
             }
         } else {
-            throw new Error("Unable to eval due to unknown AST");
+            throw new Error("Unable to eval unknown AST");
         }
     }
 }
