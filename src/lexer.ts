@@ -39,8 +39,8 @@ export class Lexer {
     }
 
     // Peek next token without advancing steps.
-    public peek = () => {
-        if (this.index + 1 >= this.tokens.length) {
+    public peek = (n = 1) => {
+        if (this.index + n >= this.tokens.length) {
             return null;
         }
 
