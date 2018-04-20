@@ -6,7 +6,7 @@ An elementary calculator implemented as a language intepreter.
 
 tscalc doesn't use the builtin JavaScript `eval` function; instead, we wrote the interperter from scratch, i.e. lexer, parser, interpreter. This toy interperter is an exercise for interpreters; we may or may not add features later.
 
-We implemented a simple web calculator based on this project.  You may follow the app [here](https://github.com/cwchentw/calculator-ts-web).
+We implemented a simple web calculator based on this project.  You may follow the app [here](https://github.com/cwchentw/tscalc-web).
 
 ## Install
 
