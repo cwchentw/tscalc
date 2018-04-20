@@ -65,7 +65,7 @@ export class UniOpAST extends AST {
         this.children.push(child);
     }
 
-    public getChild = () => {
+    public child = () => {
         return this.children[0];
     }
 }
@@ -83,11 +83,11 @@ export class BiOpAST extends AST {
         this.children.push(rightChild);
     }
 
-    public getLeftChild = () => {
+    public leftChild = () => {
         return this.children[0];
     }
 
-    public getRightChild = () => {
+    public rightChild = () => {
         return this.children[1];
     }
 }

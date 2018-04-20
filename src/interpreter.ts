@@ -44,8 +44,8 @@ export class Interpreter {
             // Get current token.
             const t = a.token();
             // Recursively call and eval child ASTs.
-            const left = this.eval(a.getLeftChild());
-            const right = this.eval(a.getRightChild());
+            const left = this.eval(a.leftChild());
+            const right = this.eval(a.rightChild());
 
             /*  This interpreter utilizes underlying JavaScript runtime
                 to run the program. */
@@ -68,7 +68,7 @@ export class Interpreter {
             // Get current token.
             const t = a.token();
             // Recursively call and eval the child AST.
-            const factor = this.eval(a.getChild());
+            const factor = this.eval(a.child());
             
             /*  This interpreter utilizes underlying JavaScript runtime
                 to run the program. */
