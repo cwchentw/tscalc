@@ -16,7 +16,7 @@ Build with Node and TypeScript.
 $ git clone https://github.com/cwchentw/tscalc.git
 $ cd tscalc
 $ npm install
-$ npm start
+$ npm run build
 ```
 
 Copy *dist/calc.min.js* to your own project.
