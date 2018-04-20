@@ -5,14 +5,17 @@ export enum Type {
     Float,
     TNaN,      // NaN in JavaScript.
     TInfinity, // Infinity in JavaScript.
-    Add, // +
-    Sub, // -
-    Mul, // *
-    Div, // /
-    Mod, // %
-    Pow, // **
-    LeftParen,  // (
-    RightParen, // )
+    Add,  // +
+    Sub,  // -
+    Mul,  // *
+    Div,  // /
+    Mod,  // %
+    Pow,  // **
+    LeftParen,   // (
+    RightParen,  // )
+    Builtin,  // Builtin math functions
+    PI,  // PI in JavaScript.
+    E,   // E (natural number) in JavaScript.
 }
 
 // Token holds the information of the token type and string.
