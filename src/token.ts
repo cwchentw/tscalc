@@ -1,9 +1,10 @@
+// Declare valid token type in tscalc.
 export enum Type {
-    EOF,
+    EOF, // End of File.
     Integer,
     Float,
-    TNaN,
-    TInfinity,
+    TNaN,      // NaN in JavaScript.
+    TInfinity, // Infinity in JavaScript.
     Add, // +
     Sub, // -
     Mul, // *
@@ -14,6 +15,7 @@ export enum Type {
     RightParen, // )
 }
 
+// Token holds the information of the token type and string.
 export class Token {
     private t: Type;
     private str: string;
