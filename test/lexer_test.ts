@@ -152,7 +152,7 @@ describe("Lexer", () => {
             assert.equal(t.value(), "Infinity");
         });
         
-        it("2 * PI * 5", () => {
+        it("2 * PI * 10.2", () => {
             var lexer = new lex.Lexer("2 * PI * 10.2");
             
             var t = lexer.next();
