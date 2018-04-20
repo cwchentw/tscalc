@@ -20,7 +20,7 @@ import * as token from "./token";
    Float: an floating-point number as that in JavaScript.
    NaN: NaN in JavaScript
    Inf: Infinity: in JavaScript
-   Const: PI and E in JavaScript  // Unimplemented yet
+   Const: PI and E in JavaScript
  */
 export class Parser {
     private lexer: lexer.Lexer;
@@ -162,7 +162,6 @@ export class Parser {
     // Unimplemented.
 
     // ELEMENT: (Add/Sub) Int|Float|NaN|Inf|Const
-    // Const is not implemented.
     private parseFactor = () => {
         const t = this.currentToken;
 
