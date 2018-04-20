@@ -1,7 +1,7 @@
 {
-  "name": "calculator",
+  "name": "tscalc",
   "version": "1.0.0",
-  "description": "A simple calculator",
+  "description": "A simple calculator implemented as an interpreter",
   "main": "./dist/calc.min.js",
   "scripts": {
     "test": "mocha --compilers ts:ts-node/register test/*.ts",
@@ -11,7 +11,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cwchentw/calculator-ts.git"
+    "url": "https://github.com/cwchentw/tscalc.git"
   },
   "devDependencies": {
     "@types/chai": "^3.5.1",
