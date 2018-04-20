@@ -3,6 +3,7 @@ import * as lexer from "./lexer";
 import * as parser from "./parser";
 import * as token from "./token";
 
+// Evaluator is just a helper class for Interpreter.
 export class Evaluator {
     private interpreter: Interpreter;
 
@@ -16,6 +17,7 @@ export class Evaluator {
     }
 }
 
+// Interpreter consumes a Parser, running the program on-the-fly.
 export class Interpreter {
     private parser: parser.Parser;
 
@@ -24,21 +26,29 @@ export class Interpreter {
     }
 
     public run = () => {
+        // This interpreter receives only one AST.
         const ast = this.parser.next();
 
         if (ast === null) {
             return null;
         }
 
+        /*  Walk through the AST and runs it on-the-fly, 
+            namely a tree-walking interpreter. */
         return this.eval(ast);
     }
 
+    // eval consumes a AST and runs it.
     private eval = (a: ast.AST) => {
         if (a instanceof ast.BiOpAST) {
+            // Get current token.
             const t = a.token();
+            // Recursively call and eval child ASTs.
             const left = this.eval(a.getLeftChild());
             const right = this.eval(a.getRightChild());
 
+            /*  This interpreter utilizes underlying JavaScript runtime
+                to run the program. */
             if (t.token() === token.Type.Add) {
                 return left + right;
             } else if (t.token() === token.Type.Sub) {
@@ -55,9 +65,13 @@ export class Interpreter {
                 throw new Error("Unable to eval unknown bi-op AST");
             }
         } else if (a instanceof ast.UniOpAST) {
+            // Get current token.
             const t = a.token();
+            // Recursively call and eval the child AST.
             const factor = this.eval(a.getChild());
-
+            
+            /*  This interpreter utilizes underlying JavaScript runtime
+                to run the program. */
             if (t.token() === token.Type.Add) {
                 return factor;
             } else if (t.token() === token.Type.Sub) {
@@ -66,8 +80,11 @@ export class Interpreter {
                 throw new Error("Unable to eval unknown uni-op AST");
             }
         } else if (a instanceof ast.FactorAST) {
+            // Get current token.
             const t = a.token();
 
+            /*  This interpreter utilizes underlying JavaScript runtime
+                to run the program. */
             if (t.token() === token.Type.Integer) {
                 return parseInt(t.value(), 10);
             } else if (t.token() === token.Type.Float) {
@@ -84,6 +101,3 @@ export class Interpreter {
         }
     }
 }
-
-
-
