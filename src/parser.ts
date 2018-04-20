@@ -178,6 +178,12 @@ export class Parser {
         } else if (t.token() === token.Type.TInfinity) {
             this.eat(token.Type.TInfinity);
             return new ast.FactorAST(t);
+        } else if (t.token() === token.Type.TPI) {
+            this.eat(token.Type.TPI);
+            return new ast.FactorAST(t);
+        } else if (t.token() == token.Type.TE) {
+            this.eat(token.Type.TE);
+            return new ast.FactorAST(t);
         } else if (t.token() === token.Type.Add) {
             this.eat(token.Type.Add);
             return new ast.UniOpAST(t, this.parseFactor());

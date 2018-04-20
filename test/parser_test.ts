@@ -45,6 +45,20 @@ describe("Parser", () => {
             var ast = parser.next();
             assert.equal(ast.toString(), "Infinity");
         });
+        
+        it("PI", () => {
+            var parser = new parse.Parser(new lex.Lexer("PI"));
+            
+            var ast = parser.next();
+            assert.equal(ast.toString(), "PI");
+        });
+
+        it("E", () => {
+            var parser = new parse.Parser(new lex.Lexer("E"));
+            
+            var ast = parser.next();
+            assert.equal(ast.toString(), "E");
+        });
     });
     
     describe("Parse expressions", () => {
@@ -74,6 +88,13 @@ describe("Parser", () => {
             
             var ast = parser.next();
             assert.equal(ast.toString(), "(- Infinity NaN)");
+        });
+        
+        it("PI * E", () => {
+            var parser = new parse.Parser(new lex.Lexer("PI * E"));
+            
+            var ast = parser.next();
+            assert.equal(ast.toString(), "(* PI E)");
         });
         
         it("(5 % 3) / (4 - 1)", () => {
