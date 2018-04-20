@@ -2,6 +2,26 @@ import * as ast from "./ast";
 import * as lexer from "./lexer";
 import * as token from "./token";
 
+/* The language spec of Parser:
+   STMT: EXPR (, EXPR, EXPR, ...) // We have only one STMT currently.
+   EXPR: TERM ((Add/Sub) TERM)
+   TERM: VALUE ((Mul/Div/Mod) VALUE)
+   VALUE: FACTOR ((Pow) FACTOR)
+   FACTOR: BUILTIN( ELEMENT (, ELEMENT, ...) )  // Unimplemented yet
+   ELEMENT: (Add/Sub) Int|Float|NaN|Inf|Const
+   Add: +
+   Sub: -
+   Mul: *
+   Div: /
+   Mod: %
+   Pow: **
+   BUILTIN: sin, cos, tan, ... as those functions in JavaScript.
+   Int: an integer as that in JavaScript
+   Float: an floating-point number as that in JavaScript.
+   NaN: NaN in JavaScript
+   Inf: Infinity: in JavaScript
+   Const: PI and E in JavaScript  // Unimplemented yet
+ */
 export class Parser {
     private lexer: lexer.Lexer;
     private currentToken: token.Token;
@@ -24,6 +44,7 @@ export class Parser {
         return this.stmt[this.index];
     }
 
+    // STMT: EXPR (, EXPR, EXPR, ...)
     private run = () => {
         this.currentToken = this.lexer.next();
         while (this.currentToken !== null) {
@@ -41,7 +62,7 @@ export class Parser {
         }
     }
 
-    // expr: TERM ((Add|Sub) TERM)
+    // EXPR: TERM ((Add/Sub) TERM)
     private parseExpr = () => {
         let expr = this.parseTerm();
 
@@ -73,7 +94,7 @@ export class Parser {
         return expr;
     }
 
-    // term: VALUE ((Mul|Div|Mod) VALUE)
+    // TERM: VALUE ((Mul/Div/Mod) VALUE)
     private parseTerm = () => {
         let term = this.parseValue();
 
@@ -110,7 +131,7 @@ export class Parser {
         return term;
     }
 
-    // value: FACTOR ((Pow) FACTOR)
+    // VALUE: FACTOR ((Pow) FACTOR)
     private parseValue = () => {
         let value = this.parseFactor();
 
@@ -136,8 +157,12 @@ export class Parser {
 
         return value;
     }
+    
+    // FACTOR: BUILTIN( ELEMENT (, ELEMENT, ...) )
+    // Unimplemented.
 
-    // factor: (Add/Sub) Integer|Float|NaN|Infinity
+    // ELEMENT: (Add/Sub) Int|Float|NaN|Inf|Const
+    // Const is not implemented.
     private parseFactor = () => {
         const t = this.currentToken;
 
