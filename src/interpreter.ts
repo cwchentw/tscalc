@@ -93,6 +93,10 @@ export class Interpreter {
                 return NaN;
             } else if (t.token() === token.Type.TInfinity) {
                 return Infinity;
+            } else if (t.token() === token.Type.TPI) {
+                return Math.PI;
+            } else if (t.token() === token.Type.TE) {
+                return Math.E;
             } else {
                 throw new Error("Unable to eval unknown factor");
             }

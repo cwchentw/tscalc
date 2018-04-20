@@ -40,6 +40,18 @@ describe("Interpreter", () => {
             var result = evaluator.run();
             assert.equal(isFinite(result), false);
         });
+        
+        it("PI", () => {
+            var evaluator = new e.Evaluator("PI");
+            var result = evaluator.run();
+            assert(Math.abs(result - Math.PI) < 0.000001);
+        });
+        
+        it("E", () => {
+            var evaluator = new e.Evaluator("E");
+            var result = evaluator.run();
+            assert(Math.abs(result - Math.E) < 0.000001);
+        });
     });
     
     describe("Eval expressions", () => {
