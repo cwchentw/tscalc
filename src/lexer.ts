@@ -108,7 +108,7 @@ export class Lexer {
     }
 
     private lexWord = () => {
-        let w = this.strArray.slice(this.pos);
+        const w = this.strArray.slice(this.pos);
         
         if (w.length >= 8) {
             if (w.slice(0, 8).join("") === "Infinity") {
@@ -150,7 +150,7 @@ export class Lexer {
             }
         }
 
-        let s = this.peekString();
+        const s = this.peekString();
         throw new Error("Unknow string: " + s);
     }
 
@@ -258,7 +258,7 @@ export class Lexer {
             s === "K" || s === "L" || s === "M" || s === "N" || s === "O" ||
             s === "P" || s === "Q" || s === "R" || s === "S" || s === "T" ||
             s === "U" || s === "V" || s === "W" || s === "X" || s === "Y" ||
-            s === "Z")
+            s === "Z");
     }
 
     private isDigit = (s: string) => {

@@ -27,15 +27,15 @@ export class Interpreter {
 
     public run = () => {
         // This interpreter receives only one AST.
-        const ast = this.parser.next();
+        const a = this.parser.next();
 
-        if (ast === null) {
+        if (a === null) {
             return null;
         }
 
         /*  Walk through the AST and runs it on-the-fly, 
             namely a tree-walking interpreter. */
-        return this.eval(ast);
+        return this.eval(a);
     }
 
     // eval consumes a AST and runs it.

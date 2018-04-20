@@ -28,8 +28,8 @@ export class Parser {
     private stmt: ast.AST[];
     private index: number;
 
-    public constructor(lexer: lexer.Lexer) {
-        this.lexer = lexer;
+    public constructor(lx: lexer.Lexer) {
+        this.lexer = lx;
         this.stmt = [];
         this.index = -1;
 
