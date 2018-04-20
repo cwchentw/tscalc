@@ -1,14 +1,19 @@
 import * as lex from "./lexer";
 import * as token from "./token";
 
+// AST class represents a abstract syntax tree (AST).
 export abstract class AST {
+    // t holds the token itself.
     protected t: token.Token;
+    // children holds child AST.
     protected children: AST[];
 
+    // The getter to the token in one AST class.
     public token = () => {
         return this.t;
     }
 
+    // toString stringifies AST, only for testing purpose.
     public toString = (): string => {
         let output = "";
 
@@ -36,6 +41,7 @@ export abstract class AST {
     }
 }
 
+// FactorAST holds no child AST, e.g. 3.
 export class FactorAST extends AST {
     protected t: token.Token;
     protected children: AST[];
@@ -47,6 +53,7 @@ export class FactorAST extends AST {
     }
 }
 
+// UniOpAST holds one operator and one child AST, `e.g. (- 3)`.
 export class UniOpAST extends AST {
     protected t: token.Token;
     protected children: AST[];
@@ -63,6 +70,7 @@ export class UniOpAST extends AST {
     }
 }
 
+// BiOpAST holds two child ASTs and one operator, e.g. `(+ 3 5)`.
 export class BiOpAST extends AST {
     protected t: token.Token;
     protected children: AST[];
