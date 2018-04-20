@@ -44,6 +44,22 @@ describe("Lexer", () => {
             assert.equal(t.value(), "Infinity");
         });
         
+        it("PI", () => {
+            var lexer = new lex.Lexer("PI");
+            
+            var t = lexer.next();
+            assert.equal(t.token(), token.Type.TPI);
+            assert.equal(t.value(), "PI");
+        });
+        
+        it("E", () => {
+            var lexer = new lex.Lexer("E");
+            
+            var t = lexer.next();
+            assert.equal(t.token(), token.Type.TE);
+            assert.equal(t.value(), "E");
+        });
+        
         it("Add", () => {
             var lexer = new lex.Lexer("+");
             
@@ -134,6 +150,25 @@ describe("Lexer", () => {
             
             t = lexer.next();
             assert.equal(t.value(), "Infinity");
+        });
+        
+        it("2 * PI * 5", () => {
+            var lexer = new lex.Lexer("2 * PI * 10.2");
+            
+            var t = lexer.next();
+            assert.equal(t.value(), "2");
+            
+            t = lexer.next();
+            assert.equal(t.value(), "*");
+            
+            t = lexer.next();
+            assert.equal(t.value(), "PI");
+            
+            t = lexer.next();
+            assert.equal(t.value(), "*");
+            
+            t = lexer.next();
+            assert.equal(t.value(), "10.2");
         });
         
         it("(5 % 3)**(4 - 2)", () => {

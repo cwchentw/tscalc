@@ -129,6 +129,26 @@ export class Lexer {
                 return this.updateState;
             }
         }
+        
+        if (w.length >= 2) {
+            if (w.slice(0, 2).join("") == "PI") {
+                this.offset += 2;
+                this.current += 2;
+                this.appendToken(token.Type.TPI);
+                this.update();
+                return this.updateState;
+            }
+        }
+        
+        if (w.length >= 1) {
+            if (w.slice(0, 1).join("") == "E") {
+                this.offset += 1;
+                this.current += 1;
+                this.appendToken(token.Type.TE);
+                this.update();
+                return this.updateState;
+            }
+        }
 
         let s = this.peekString();
         throw new Error("Unknow string: " + s);

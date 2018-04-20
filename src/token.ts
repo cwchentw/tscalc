@@ -14,8 +14,8 @@ export enum Type {
     LeftParen,   // (
     RightParen,  // )
     Builtin,  // Builtin math functions
-    PI,  // PI in JavaScript.
-    E,   // E (natural number) in JavaScript.
+    TPI,  // PI in JavaScript.
+    TE,   // E (natural number) in JavaScript.
 }
 
 // Token holds the information of the token type and string.
