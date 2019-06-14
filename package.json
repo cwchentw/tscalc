@@ -23,8 +23,8 @@
     "ts-loader": "^2.3.4",
     "ts-node": "^3.0.2",
     "tsify": "^3.0.1",
-    "tslint": "^5.10.0",
+    "tslint": "^5.17.0",
     "typescript": "^2.9.2",
-    "webpack": "^4.33.0"
+    "webpack": "^4.34.0"
   }
 }
