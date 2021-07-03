@@ -50,10 +50,6 @@ Some valid expressions:
 - `(5 - 2) / (3 + 1)`
 - `(8 % 5)**(4 - 1)`
 
-## Author
+## Copyright
 
-Michael Chen, 2017-2018.
-
-## License
-
-MIT
+Copyright (c) 2017-2018 Michelle Chen. Licensed under MIT
