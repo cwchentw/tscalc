@@ -19,7 +19,7 @@
     "@types/mocha": "^2.2.41",
     "awesome-typescript-loader": "^3.2.3",
     "chai": "^3.5.0",
-    "mocha": "~5.2.0",
+    "mocha": "~10.1.0",
     "ts-loader": "^2.3.4",
     "ts-node": "^3.0.2",
     "tsify": "^3.0.1",
